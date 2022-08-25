@@ -1,0 +1,17 @@
+{
+   "id": "Item updater by Excel",
+   "title": "Item updater by Excel",
+   "subtitle": "Can change item information easily by uploading excel file",
+   "author": "Ex Libris",
+   "icon": {
+      "type": "font",
+      "value": "fa fa-barcode"
+   },
+   "pages": {
+      "help": "/#/help"
+   },
+   "fullscreen": {
+      "allow": true,
+      "open": false
+   }
+}
