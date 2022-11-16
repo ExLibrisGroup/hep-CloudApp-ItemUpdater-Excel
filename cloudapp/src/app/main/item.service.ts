@@ -30,7 +30,7 @@ export class ItemService {
             } else {
               console.log(original['link']);
               Object.keys(item).forEach(function(key){
-                console.log(key + ' - ' + item.key);
+                console.log(key + ' - ' + item[key]);
                 if(key in original['holding_data']){
                   if(typeof  original['holding_data'][key] !== "string"){
                     original['holding_data'][key]['value'] = item[key]
@@ -38,7 +38,7 @@ export class ItemService {
                     original['holding_data'][key]=item[key];
                   }
                 }else if(key in original['item_data']){
-                  if(typeof original['item_data'][key] !== "string"){
+                  if(typeof original['item_data'][key] === "object"){
                     original['item_data'][key]['value'] = item[key]
                   }else{
                     original['item_data'][key]=item[key];
