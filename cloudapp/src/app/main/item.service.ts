@@ -14,7 +14,7 @@ export class ItemService {
   ) { }
 
   processUser(item: any) {
-    let url= item.barcode ? `/items?item_barcode=${item.barcode}` : `/bibs/${item.mms_id}/holdings/${item.holding_id}/items/${item.item_pid}`;
+    let url= item.mms_id && item.holding_id && item.item_pid  ? `/bibs/${item.mms_id}/holdings/${item.holding_id}/items/${item.item_pid}` : `/items?item_barcode=${item.barcode}`;
         return this.restService.call(url).pipe(
           catchError(e=>{
               throw(e);
@@ -36,7 +36,10 @@ export class ItemService {
                   key = 'barcode';
                 }
                 console.log(key + ' - ' + item[key]);
-                if(key in original['holding_data']){
+                if(['mms_id','holding_id','item_pid'].includes(key)){
+                  console.log(key + ' - ' + item[key] + ' - Not Updating ids' );
+                }
+                else if(key in original['holding_data']){
                   if(typeof  original['holding_data'][key] !== "string"){
                     original['holding_data'][key]['value'] = item[key]
                   }else{
