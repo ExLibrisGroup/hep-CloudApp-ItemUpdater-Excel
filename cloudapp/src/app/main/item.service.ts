@@ -30,6 +30,11 @@ export class ItemService {
             } else {
               console.log(original['link']);
               Object.keys(item).forEach(function(key){
+                if(key.startsWith('barcode_') ){
+                  //change barcodes - Excel has more than 1 column with barcode title
+                  item['barcode'] = item[key] ;
+                  key = 'barcode';
+                }
                 console.log(key + ' - ' + item[key]);
                 if(key in original['holding_data']){
                   if(typeof  original['holding_data'][key] !== "string"){
@@ -44,7 +49,7 @@ export class ItemService {
                     original['item_data'][key]=item[key];
                   }
                 }else{
-                  original['item_data'].key=item[key];
+                  original['item_data'][key]=item[key];
                 }
             });
               url= original['link'] ? original['link'].substring(original['link'].indexOf("/almaws/v1/")+10 ): url;
