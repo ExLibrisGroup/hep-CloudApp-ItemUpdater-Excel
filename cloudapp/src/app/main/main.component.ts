@@ -72,7 +72,7 @@ export class MainComponent implements OnInit, OnDestroy {
               let updatedItems = new Array();
               let errorSummary = '';
               results.forEach(res => {
-                if (isRestErrorResponse(res)) {
+                if (isRestErrorResponse(res) || res instanceof Error) {
                   errorCount++;
                   errorSummary += `${this.translate.instant("Main.Error")}: ${res.message}` +'\n';
                 } else {

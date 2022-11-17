@@ -46,7 +46,7 @@ export class ItemService {
                     original['holding_data'][key]=item[key];
                   }
                 }else if(key in original['item_data']){
-                  if(typeof original['item_data'][key] === "object"){
+                  if(original['item_data'][key] && typeof original['item_data'][key] === "object"){
                     original['item_data'][key]['value'] = item[key]
                   }else{
                     original['item_data'][key]=item[key];
