@@ -3,7 +3,7 @@ import { tap , mergeMap} from 'rxjs/operators';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RestErrorResponse } from '@exlibris/exl-cloudapp-angular-lib';
 import { TranslateService } from '@ngx-translate/core';
-import * as XLSX from 'ts-xlsx';
+import * as XLSX from 'xlsx';
 import { ItemService } from './item.service';
 
 @Component({
@@ -55,7 +55,7 @@ export class MainComponent implements OnInit, OnDestroy {
         var first_sheet_name = workbook.SheetNames[0];
         var worksheet = workbook.Sheets[first_sheet_name];
         
-        let items: any[] =XLSX.utils.sheet_to_json(worksheet,{raw:true});
+        let items: any[] =XLSX.utils.sheet_to_json(worksheet,{defval:""});
         console.log(items);
         from(items.map(item => 
           this.itemService
