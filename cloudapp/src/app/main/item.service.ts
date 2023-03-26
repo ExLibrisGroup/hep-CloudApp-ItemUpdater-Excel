@@ -31,7 +31,7 @@ export class ItemService {
               console.log(original['link']);
               Object.keys(item).forEach(function(key){
                 if(key.startsWith('barcode_') ){
-                  //change barcodes - Excel has more than 1 column with barcode title
+                  //change barcodes - has more than 1 column with barcode title
                   item['barcode'] = item[key] ;
                   key = 'barcode';
                 }
@@ -40,7 +40,7 @@ export class ItemService {
                   console.log(key + ' - ' + item[key] + ' - Not Updating ids' );
                 }
                 else if(key in original['holding_data']){
-                  if(typeof  original['holding_data'][key] !== "string"){
+                  if(original['holding_data'][key] && typeof original['holding_data'][key] === "object"){
                     original['holding_data'][key]['value'] = item[key]
                   }else{
                     original['holding_data'][key]=item[key];
