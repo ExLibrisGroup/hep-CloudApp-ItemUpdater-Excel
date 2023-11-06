@@ -51,6 +51,8 @@ export class ItemService {
                   }else{
                     original['item_data'][key]=item[key];
                   }
+                }else if(key=='due_back_date'){
+                    original['holding_data'][key]=item[key];
                 }else{
                   original['item_data'][key]=item[key];
                 }
