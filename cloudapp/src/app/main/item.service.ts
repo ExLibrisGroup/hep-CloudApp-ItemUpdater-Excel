@@ -14,6 +14,10 @@ export class ItemService {
   ) { }
 
   processUser(item: any) {
+    if(!(item.mms_id && item.holding_id && item.item_pid) || !item.barcode){
+      //throw throwError("No lookup key");
+      return of(this.handleError({ok:false,status:"",message:"No lookup key",statusText:"",error:true}, item));
+    }
     let url= item.mms_id && item.holding_id && item.item_pid  ? `/bibs/${item.mms_id}/holdings/${item.holding_id}/items/${item.item_pid}` : `/items?item_barcode=${item.barcode}`;
         return this.restService.call(url).pipe(
           catchError(e=>{
@@ -71,7 +75,7 @@ export class ItemService {
 
   }
   private handleError(e: RestErrorResponse, item: any) {
-    const props = item.barcode ? item.barcode : ['mms_id', 'holding_id', 'item_pid'].map(p=>item[p]).join(', ');
+    const props = item.barcode ? item.barcode :item.mms_id && item.holding_id && item.item_pid? ['mms_id', 'holding_id', 'item_pid'].map(p=>item[p]).join(', ') : JSON.stringify(item);
     if (item) {
       e.message = e.message + ` (${props})`
     }
