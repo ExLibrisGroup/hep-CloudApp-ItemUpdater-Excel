@@ -2,7 +2,7 @@
    "title": "default",
    "subtitle": "default",
    "author": "default",
-   "env": "http://il-yehudita-vm.corp.exlibrisgroup.com:1801/mng/login?institute=EXLDEV1_INST",
-   "port": 443,
+   "env": "https://sqa-na07.alma.exlibrisgroup.com/mng/login?institute=01BU_INST&auth=local&debug=true",
+   "port": 1025,
    "name": "default"
 }

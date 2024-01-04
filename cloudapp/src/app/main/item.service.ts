@@ -14,7 +14,7 @@ export class ItemService {
   ) { }
 
   processUser(item: any) {
-    if(!(item.mms_id && item.holding_id && item.item_pid) || !item.barcode){
+    if(!(item.mms_id && item.holding_id && item.item_pid) && !item.barcode){
       //throw throwError("No lookup key");
       return of(this.handleError({ok:false,status:"",message:"No lookup key",statusText:"",error:true}, item));
     }
