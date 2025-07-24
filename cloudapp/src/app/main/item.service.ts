@@ -18,7 +18,7 @@ export class ItemService {
       //throw throwError("No lookup key");
       return of(this.handleError({ok:false,status:"",message:"No lookup key",statusText:"",error:true}, item));
     }
-    let url= item.mms_id && item.holding_id && item.item_pid  ? `/bibs/${item.mms_id}/holdings/${item.holding_id}/items/${item.item_pid}` : `/items?item_barcode=${item.barcode}`;
+    let url= item.mms_id && item.holding_id && item.item_pid  ? `/bibs/${item.mms_id}/holdings/${item.holding_id}/items/${item.item_pid}` : `/items?item_barcode=${encodeURIComponent(item.barcode)}`;
         return this.restService.call(url).pipe(
           catchError(e=>{
               throw(e);
